@@ -1,5 +1,10 @@
 <?php
 
+use App\Model\Category;
+use App\Model\Like;
+use App\Model\Question;
+use App\Model\Reply;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,5 +17,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
+        factory(User::class, 25)->create();
+        factory(Category::class, 25)->create();
+        factory(Question::class, 225)->create();
+        factory(Reply::class, 455)->create();
+        factory(Like::class, 855)->create();
     }
 }
