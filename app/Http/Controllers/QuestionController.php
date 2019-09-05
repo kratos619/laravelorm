@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\QuestionResource;
 use App\Model\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class QuestionController extends Controller
 {
@@ -80,7 +81,8 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $question->update($request->all());
+        return response()->json('update', 200);
     }
 
     /**
