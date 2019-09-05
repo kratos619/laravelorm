@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResource;
 use App\Model\Category;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return response()->json(Category::latest()->get(), 200);
+        return response()->json(CategoryResource::collection(Category::latest()->get()), 200);
     }
 
 
@@ -38,7 +39,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return response()->json($category);
+        return response()->json(new CategoryResource($category), 200);
     }
 
 
