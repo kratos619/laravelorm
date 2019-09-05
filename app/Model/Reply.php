@@ -11,7 +11,7 @@ class Reply extends Model
 {
     public function question()
     {
-        return $this->belongsTo(Question::clas);
+        return $this->belongsTo(Question::class);
     }
 
     public function user()
@@ -19,7 +19,7 @@ class Reply extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function likes()
+    public function like()
     {
         return $this->hasMany(Like::class);
     }
