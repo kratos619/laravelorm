@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Question;
 use App\Model\Reply;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,9 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Question $question)
     {
-        //
+        return $question->replies;
     }
 
     /**
@@ -27,46 +28,20 @@ class ReplyController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(Question $question, Request $request)
     {
-        //
+        $reply = $question->replies()->create($request->all());
+        return response()->json(["reply" => $reply], 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\Reply  $reply
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Reply $reply)
+
+    public function show(Question $question, Reply $reply)
     {
-        //
+        return $reply;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\Reply  $reply
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reply $reply)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Reply  $reply
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Reply $reply)
     {
         //
@@ -78,8 +53,9 @@ class ReplyController extends Controller
      * @param  \App\Model\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reply $reply)
+    public function destroy(Question $question, Reply $reply)
     {
-        //
+        $reply->delete();
+        return response("delete", 200);
     }
 }
