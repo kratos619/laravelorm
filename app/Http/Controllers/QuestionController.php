@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Response;
 
 class QuestionController extends Controller
 {
+
+    // public function phpinfo_new()
+    // {
+    //     return \phpinfo();
+    // }
     /**
      * Display a listing of the resource.
      *
